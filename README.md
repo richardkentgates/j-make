@@ -1,5 +1,4 @@
-# J-Make
-Useless Client-Side Website Rendering
+# Useless Client-Side Website Rendering
 
 There are 4 required components of this project. The J-Make javascript, JQuery, the body.json file, and strict directory structure. If it seems overly-simplistic, it is, and on purpose. I want this to make each element completely segragated on the server, pulling content from directory contaners. I want this capability because I feel like development time on all projects take so long because changes have to be rolled out at such large scale that it take far too long to even get started.
 
