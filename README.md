@@ -36,34 +36,36 @@ Use this simple array format to structure your html. Like most developers you pr
 
 The logic is prety simple. Remember how the elements J-Make generates has an id based on the tag name and index? You just need to mirror that in your directories. I even start you off with a folder named body to make it easy. An example follows down-page. J-Make reads the index file in the directory that corisponds with the name and position of the element, so you can use index.html, index.php, or whatever server side language you prefer. Mix and match, html for some and php for easier elements. Index file results will be prepended to the element with nested elements appended after the content.
 
-|_theme
+|theme
 
-|_.body.json
+|.body.json
 
-|_.body
+|.body
 
-|_..header_0
+|..header_0
 
-|_..main_1
+|...index.html
 
-|_...index.html
+|..main_1
 
-|_...article_0
+|...index.html
 
-|_....index.html
+|...article_0
 
-|_...aside_1
+|....index.html
 
-|_....index.html
+|...aside_1
 
-|_....section_0
+|....index.html
 
-|_.....index.html
+|....section_0
 
-|_....section_1
+|.....index.html
 
-|_.....index.html
+|....section_1
 
-|_..footer_2
+|.....index.html
 
-|_...index.html
+|..footer_2
+
+|...index.html
