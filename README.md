@@ -1,2 +1,54 @@
 # j-make
 Useless Client-Side Website Rendering
+
+There are three required components of this project. The J-Make javascript, JQuery, the body.json file, and strict directory structure. If it seems overly-simplistic, it is, and on purpose. I want this to make each element completely segragated on the server, pulling content from directory contaners. I want this capability because I feel like development time on all projects take so long because changes have to be rolled out at such large scale that it take far too long to even get started.
+
+This approach turns customizing and maintaining anything on the website into a small project. It also allows for drop-in style plugins, and is in the direction we all know it's going. Websites will eventually be web apps. Also, why do I need a pugin with site-wide capabilities to effect one widget? Why does the entire website have to work within the same strict framework?
+
+# J-Make
+
+Include a link to the j-make.js in your index. This script will use the JSON array as a map to build the elements to be apended to the &gt;body&lt;.
+The script will append id attributes to the elements based on tag name and element position index, such as header_0, main_1, and footer_2. J-Make also sets the class attribute for each generated element to "j-make".
+
+# JQuery
+
+Yeah, so it's called J-Make. You already knew.
+
+# body.json
+
+Use this simple array format to structure your html. Like most developers you probably have some basics you like to have in the head of your document, so you build that out then JSON array the body elements and move on to the next part of your dev.
+
+[
+ "header",
+ "main",
+ [
+  "article",
+  "aside",
+  [
+   "section",
+   "section"
+  ]
+ ],
+ "footer"
+]
+
+# Directory Structure
+
+The logic is prety simple. Remember how the elements J-Make generates has an id based on the tag name and index? You just need to mirror that in your directories. I even start you off with a folder named body to make it easy. An example follows down-page. J-Make reads the index file in the directory that corisponds with the name and position of the element, so you can use index.html, index.php, or whatever server side language you prefer. Mix and match, html for some and php for easier elements. Index file results will be prepended to the element with nested elements appended after the content.
+
+|_theme
+|_.body.json
+|_.body
+|_..header_0
+|_..main_1
+|_...index.html
+|_...article_0
+|_....index.html
+|_...aside_1
+|_....index.html
+|_....section_0
+|_.....index.html
+|_....section_1
+|_.....index.html
+|_..footer_2
+|_...index.html
