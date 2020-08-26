@@ -4,16 +4,16 @@ There are 4 required components of this project. The J-Make javascript, JQuery, 
 
 This approach makes customizing and maintaining anything on the website a small project. It also allows for drop-in style plugins and is in the direction we all know it's going. Websites will eventually be web apps. Also, why do I need a plugin with site-wide capabilities to effect one widget? Why does the entire website have to work within the same strict framework?
 
-# j-make.js
+## j-make.js
 
 Include a link to the j-make.js in your index. This script will use the JSON array as a map to build the elements and append them to the &gt;body&lt;.
 The script will append id attributes to the elements based on tag name and element position index, such as header_0, main_1, and footer_2. J-Make also sets the class attribute for each generated element to "j-make".
 
-# JQuery
+## JQuery
 
 Yeah, so it's called J-Make. You already knew.
 
-# body.json
+## body.json
 
 Use this simple array format to structure your html. Like most developers, you probably have some basics you like to have in the head of your document, so you build that out then JSON array the body elements and move on to the next part of your dev. An array will be appended to the element named by the previous sibling in the array, so all nested arrays need to be preceded by a string value for an element.
 
