@@ -5,7 +5,7 @@ There are 4 required components of this project. The J-Make javascript, JQuery, 
 
 This approach turns customizing and maintaining anything on the website into a small project. It also allows for drop-in style plugins, and is in the direction we all know it's going. Websites will eventually be web apps. Also, why do I need a pugin with site-wide capabilities to effect one widget? Why does the entire website have to work within the same strict framework?
 
-# J-Make
+# j-make.js
 
 Include a link to the j-make.js in your index. This script will use the JSON array as a map to build the elements to be apended to the &gt;body&lt;.
 The script will append id attributes to the elements based on tag name and element position index, such as header_0, main_1, and footer_2. J-Make also sets the class attribute for each generated element to "j-make".
