@@ -6,15 +6,15 @@
             $(data).prependTo( "#" + k );
         });
     };
-    jMake.functions.whichChild = function(e){
-        var  i= 0;
+    jMake.functions.matchNode = function(e){
+        jMake.nodeIdex= 0;
         while((e=e.previousElementSibling)!=null) ++i;
-        return i;
+        return jMake.nodeIdex;
     };
     jMake.functions.strings = function(v,e){
         jMake.elements = document.createElement(v);
         e.appendChild(jMake.elements);
-        jMake.key = v + '_' + jMake.functions.whichChild(jMake.elements);
+        jMake.key = v + '_' + jMake.functions.matchNode(jMake.elements);
         jMake.elements.id = jMake.key;
         jMake.elements.className = 'j-make';
         jMake.parentPathArray = $(jMake.elements).parents().map(function(i,mappedItem){
