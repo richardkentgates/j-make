@@ -8,7 +8,7 @@
     };
     jMake.functions.matchNode = function(e){
         jMake.nodeIdex= 0;
-        while((e=e.previousElementSibling)!=null) ++i;
+        while((e=e.previousElementSibling)!=null) ++jMake.nodeIdex;
         return jMake.nodeIdex;
     };
     jMake.functions.strings = function(v,e){
