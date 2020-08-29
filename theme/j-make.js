@@ -7,9 +7,9 @@
         });
     };
     jMake.functions.matchNode = function(e){
-        jMake.nodeIdex= 0;
-        while((e=e.previousElementSibling)!=null) ++jMake.nodeIdex;
-        return jMake.nodeIdex;
+        jMake.nodeIndex= 0;
+        while((e=e.previousElementSibling)!=null) ++jMake.nodeIndex;
+        return jMake.nodeIndex;
     };
     jMake.functions.strings = function(v,e){
         jMake.elements = document.createElement(v);
