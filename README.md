@@ -1,8 +1,8 @@
 # Useless Client-Side Website Rendering
 
-There are 4 required components of this project. The J-Make javascript, JQuery, the body.json file, and strict directory structure. Element is populated by directory calls to index files keep element content segregated on the server, allowing for drop-in style plugin per-element and a decentralized framework.
+*There are 4 required components of this project. The J-Make javascript, JQuery, the body.json file, and strict directory structure.*
 
-J-Make calls to directories to populate elements, so you can use .html, .php, or whatever server-side scripting you prefer for index files.
+J-Make uses a JSON array to generate the DOM from the body down, then populates elements by making calls to corosponding directoris. By generating elements and pupulating them from directory calls keeps element allows for drop-in style plugins per-element, decentralizes the server-side aspects of a website, and allows for varied scripting languages without sitewide integration.
 
 ## JQuery
 
