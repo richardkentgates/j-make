@@ -17,6 +17,7 @@ Yeah, so it's called J-Make. You already knew.
 
 Use this simple array format to structure your html. Like most developers, you probably have some basics you like to have in the head of your document, so you build that out then JSON array the body elements and move on to the next part of your dev. An array will be appended to the element named by the previous sibling in the array, so all nested arrays need to be preceded by a string value for an element.
 
+<pre>
 [
  "header",
  "main",
@@ -30,6 +31,7 @@ Use this simple array format to structure your html. Like most developers, you p
  ],
  "footer"
 ]
+</pre>
 
 ## Directory Structure
 
