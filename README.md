@@ -6,7 +6,7 @@ This approach makes customizing and maintaining anything on the website a small 
 
 ## JQuery
 
-Yeah, so it's called J-Make. You already knew! J-Make requires JQuery to run. The JQuery being used as of 08/29/2020 is [jquery-3.5.1](https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=).
+Yeah, so it's called J-Make. You already knew! J-Make requires JQuery to run. The JQuery being used as of 08/29/2020 is [jquery-3.5.1](https://code.jquery.com/jquery-3.5.1.min.js).
 
 ## j-make.js
 
