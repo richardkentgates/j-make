@@ -1,12 +1,12 @@
 # Useless Client-Side Website Rendering
 
-There are 4 required components of this project. The J-Make javascript, JQuery, the body.json file, and strict directory structure. If it seems overly-simplistic, it is, and on purpose. I want this to make each element completely segregated on the server, pulling content from directory containers. I want this capability because I feel like development time on all projects takes so long because changes have to be rolled out at such a large scale that it take far too long to even get started.
+There are 4 required components of this project. The J-Make javascript, JQuery, the body.json file, and strict directory structure. Element is populated by directory calls to index files keep element content segregated on the server, allowing for drop-in style plugin per-element and a decentralized framework.
 
-This approach makes customizing and maintaining anything on the website a small project. It also allows for drop-in style plugins and is in the direction we all know it's going. Websites will eventually be web apps. Also, why do I need a plugin with site-wide capabilities to effect one widget? Why does the entire website have to work within the same strict framework?
+J-Make calls to directories to populate elements, so you can use .html, .php, or whatever server-side scripting you prefer for index files.
 
 ## JQuery
 
-Yeah, so it's called J-Make. You already knew! J-Make requires JQuery to run. The JQuery being used as of 08/29/2020 is [jquery-3.5.1](https://code.jquery.com/jquery-3.5.1.min.js).
+I bet you already guessed that J-Make requires JQuery to run :) The JQuery being used as of 08/29/2020 is [jquery-3.5.1](https://code.jquery.com/jquery-3.5.1.min.js).
 
 ## j-make.js
 
