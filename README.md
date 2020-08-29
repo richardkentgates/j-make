@@ -2,7 +2,7 @@
 
 *There are 4 required components of this project. The J-Make javascript, JQuery, the body.json file, and strict directory structure.*
 
-J-Make uses a JSON array to generate the DOM from the body down, then populates elements by making calls to corosponding directoris. By generating elements and pupulating them from directory calls keeps element allows for drop-in style plugins per-element, decentralizes the server-side aspects of a website, and allows for varied scripting languages without sitewide integration.
+J-Make uses a JSON array to generate the DOM from the body down, then populates elements by making calls to corosponding directoris. By generating elements and pupulating them from directory calls allows for drop-in style plugins per-element, decentralizes the server-side aspects of a website, and allows for varied scripting languages without sitewide integration.
 
 ## JQuery
 
