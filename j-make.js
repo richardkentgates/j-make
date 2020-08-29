@@ -27,7 +27,7 @@
             }
         })
         .get();
-        jMake.path = 'theme/' + jMake.parentPathArray.reverse().join("/").toLowerCase() + '/' + jMake.key;
+        jMake.path = jMake.parentPathArray.reverse().join("/").toLowerCase() + '/' + jMake.key;
         jMake.functions.make(jMake.path,jMake.key);
     };
     jMake.functions.arrays = function(v){
@@ -48,7 +48,7 @@
     };
     document.addEventListener('readystatechange',function(){
         if (document.readyState == "complete") {
-            $.getJSON("theme/body.json", function(data) {
+            $.getJSON("body.json", function(data) {
                 jMake.functions.j(data,document.body);
             });
         }
