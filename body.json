@@ -2,12 +2,12 @@
     "header",
     "main",
     [
-     "article",
-     "aside",
-     [
-      "section",
-      "section"
-     ]
+        "article",
+        "aside",
+        [
+            "section",
+            "section"
+        ]
     ],
     "footer"
-   ]
+]
