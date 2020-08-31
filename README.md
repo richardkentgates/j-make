@@ -1,4 +1,4 @@
-# Useless Client-Side Website Rendering
+# This project is not yet production ready!
 
 *There are 4 required components of this project. The J-Make javascript, JQuery, the body.json file, and strict directory structure.*
 
