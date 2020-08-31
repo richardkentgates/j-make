@@ -1,4 +1,4 @@
-# This project is not yet production ready!
+# A Useles Client Side Way To Render Websites
 
 *There are 4 required components of this project. The J-Make javascript, JQuery, the body.json file, and strict directory structure.*
 
