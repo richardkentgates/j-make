@@ -19,17 +19,17 @@ Use this simple array format to structure your html in [body.json](https://githu
 
 <pre>
 [
- "header",
- "main",
- [
-  "article",
-  "aside",
-  [
-   "section",
-   "section"
-  ]
- ],
- "footer"
+    "header",
+    "main",
+    [
+        "article",
+        "aside",
+        [
+            "section",
+            "section"
+        ]
+    ],
+    "footer"
 ]
 </pre>
 
