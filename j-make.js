@@ -2,7 +2,6 @@
     jMake = {};
     jMake.functions = {};
     jMake.functions.make = function(p){
-        console.log(p);
         $.get(p, function(data, status){
             $(data).prependTo('*[data-path="' + p + '"]');
         });
