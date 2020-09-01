@@ -71,5 +71,17 @@ footer p {
   color: #fff !important;
 }
 footer p a {
+  display: inline-block;
+  margin: 8px;
+  padding: 8px;
+  background-color: #525252;
+  text-decoration: none;
   color: #fff !important;
+}
+footer p a:hover {
+  text-decoration: underline;
+}
+footer p a img {
+  vertical-align: middle;
+  margin-left: 16px;
 }
