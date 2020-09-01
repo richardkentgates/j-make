@@ -35,7 +35,7 @@ Use this simple array format to structure your html in [body.json](https://githu
 
 ## Directory Structure
 
-The logic is pretty simple. Remember how the elements J-Make generates has an id based on the tag name and index? You just need to mirror that in your directories. I even start you off with a folder named body to make it easy. An example follows down-page. J-Make reads the index file in the directory that corresponds with the name and position of the element, so you can use index.html, index.php, or whatever server-side language you prefer. Mix and match, html for some, and php for easier elements. Index file results will be prepended to the element with nested elements appended after the content.
+J-Make reads the index file in the directory that corresponds with the name and position of the element, so you can use index.html, index.php, or whatever server-side language you prefer. Mix and match, html for some, and php for other elements. Index file results will be prepended to the element with nested elements appended after the content.
 
 <pre>
 index.html
