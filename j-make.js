@@ -1,64 +1,87 @@
 (function() {
-    jMake = {};
+    'use strict';
+
+    const jMake = {};
     jMake.functions = {};
-    jMake.functions.make = function(p){
-        $.get(p, function(data, status){
-            $(data).prependTo('*[data-path="' + p + '"]');
-        });
+
+    // Fetch content for a path and inject it into the matching element.
+    // Uses $.parseHTML with scripts disabled to prevent XSS.
+    jMake.functions.fetchAndInject = function(path) {
+        $.get(path)
+            .done(function(data) {
+                const clean = $.parseHTML(data, document, false);
+                $('*[data-path="' + path + '"]').prepend(clean);
+            })
+            .fail(function() {
+                console.error('j-make: failed to load content for path "' + path + '"');
+            });
     };
-    jMake.functions.nodeTreeToArray = function(e){
-        jMake.nodeTreeArray = Array();
-        while(e=e.parentNode){
-                if(!e.dataset.key){
-                    break;
-                } else {
-                    jMake.nodeTreeArray.push(e.dataset.key);
-                }
+
+    // Walk up the DOM collecting data-key values to build the directory path.
+    jMake.functions.getNodeTreePath = function(el) {
+        const parts = [];
+        let node = el;
+        while ((node = node.parentNode)) {
+            if (!node.dataset || !node.dataset.key) {
+                break;
+            }
+            parts.push(node.dataset.key);
         }
-        return jMake.nodeTreeArray;
+        return parts.reverse();
     };
-    jMake.functions.matchNode = function(e){
-        jMake.nodeIndex= 0;
-        while((e=e.previousElementSibling)!=null) ++jMake.nodeIndex;
-        return jMake.nodeIndex;
-    };
-    jMake.functions.strings = function(v,e){
-        jMake.element = document.createElement(v);
-        e.appendChild(jMake.element);
-        jMake.nodeTreeToArray = jMake.functions.nodeTreeToArray(jMake.element).reverse();
-        jMake.matchNode = jMake.functions.matchNode(jMake.element);
-        jMake.key = v + '_' + jMake.matchNode;
-        jMake.element.dataset.key = jMake.key;
-        jMake.element.className = 'j-make';
-        if(jMake.nodeTreeToArray.length > 0){
-            jMake.body = 'body/';
-        } else {
-            jMake.body = 'body';
+
+    // Count preceding siblings to determine positional index.
+    jMake.functions.getNodeIndex = function(el) {
+        let index = 0;
+        let sibling = el;
+        while ((sibling = sibling.previousElementSibling) !== null) {
+            ++index;
         }
-        jMake.element.dataset.path = jMake.body + jMake.nodeTreeToArray.join('/') + '/' + jMake.key;
-        jMake.functions.make(jMake.element.dataset.path);
+        return index;
     };
-    jMake.functions.arrays = function(v){
-        if(jQuery.type(v) == 'array'){
-            jMake.functions.j(v,jMake.element);
-        } else {
-            alert('Invalid value: ' + jType + ' type');
-        }
+
+    // Create a DOM element, set its key/path attributes, and fetch its content.
+    // Returns the new element so callers can use it as a parent for nested arrays.
+    jMake.functions.buildElement = function(tagName, parentEl) {
+        const element = document.createElement(tagName);
+        parentEl.appendChild(element);
+
+        const treePath = jMake.functions.getNodeTreePath(element);
+        const nodeIndex = jMake.functions.getNodeIndex(element);
+        const key = tagName + '_' + nodeIndex;
+
+        element.dataset.key = key;
+        element.className = 'j-make';
+
+        const basePath = treePath.length > 0 ? 'body/' : 'body';
+        element.dataset.path = basePath + treePath.join('/') + '/' + key;
+
+        jMake.functions.fetchAndInject(element.dataset.path);
+        return element;
     };
-    jMake.functions.j = function(d,e){
-        $(d).each( function(key,val){
-            if(jQuery.type(val) == 'string'){
-                jMake.functions.strings(val,e);
+
+    // Recursively process a JSON array.
+    // Strings create elements; arrays nest under the most recently created element.
+    jMake.functions.buildFromArray = function(arr, parentEl) {
+        let lastElement = parentEl;
+        $(arr).each(function(index, val) {
+            if (typeof val === 'string') {
+                lastElement = jMake.functions.buildElement(val, parentEl);
+            } else if (Array.isArray(val)) {
+                jMake.functions.buildFromArray(val, lastElement);
             } else {
-                jMake.functions.arrays(val);
+                console.error('j-make: unexpected value of type "' + typeof val + '" in body.json');
             }
         });
     };
-    document.addEventListener('readystatechange',function(){
-        if (document.readyState == "complete") {
-            $.getJSON("body.json", function(data) {
-                jMake.functions.j(data,document.body);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        $.getJSON('body.json')
+            .done(function(data) {
+                jMake.functions.buildFromArray(data, document.body);
+            })
+            .fail(function() {
+                console.error('j-make: failed to load body.json');
             });
-        }
     });
-})();
+}());

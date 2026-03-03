@@ -1,87 +1,279 @@
-* {
+*, *::before, *::after {
+  box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
-  color: #525252;
+  color: #2c2c2c;
 }
 body {
   margin: 0;
   padding: 0;
+  background-color: #f8f8f8;
 }
+
+/* ── Header ── */
 header {
   position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  background-color: rgba(55,65,65,0.8);
-  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background-color: rgba(30, 38, 38, 0.95);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  min-height: 56px;
 }
 header h1 {
-  display: block;
-  margin: 8px 32px;
-  padding: 0 16px;
-  border-left: solid 3px #a00;
-  font-size: 24px;
-  font-weight: 100;
+  margin: 0;
+  padding: 0 0 0 16px;
+  border-left: solid 3px #cc0000;
+  font-size: 22px;
+  font-weight: 300;
+  color: #fff;
+  white-space: nowrap;
+}
+header h1 .version {
+  font-size: 13px;
+  color: #cc0000;
+  margin-left: 8px;
+  font-weight: 400;
+  vertical-align: middle;
+}
+header nav {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+header nav a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+}
+header nav a:hover {
+  background-color: rgba(255,255,255,0.1);
   color: #fff;
 }
+
+/* ── Main grid ── */
 main {
   display: grid;
-  margin: 72px;
-  grid-template-areas: 'h2 h2 h2 aside_1'
-                       'article_0 article_0 article_0 aside_1'
-                       'footer_2 footer_2 footer_2 footer_2';
-  grid-column-gap: 10px;
-  text-align: top;
+  grid-template-columns: 1fr 320px;
+  grid-template-areas:
+    'heading  aside_1'
+    'article_0 aside_1';
+  column-gap: 32px;
+  max-width: 1200px;
+  margin: 80px auto 0;
+  padding: 32px 40px;
 }
-main h2 {
-  grid-area: h2;
+main > h2 {
+  grid-area: heading;
+  font-size: 22px;
+  font-weight: 300;
+  color: #444;
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ddd;
 }
+
+/* ── Article ── */
 article {
   grid-area: article_0;
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  padding: 32px;
+  line-height: 1.7;
+}
+article h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 32px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #cc0000;
+}
+article h3:first-child {
+  margin-top: 0;
 }
 article p {
-  margin: 8px;
-  padding: 8px;
+  margin: 0 0 14px;
+  color: #444;
 }
+article ol, article ul {
+  padding-left: 24px;
+  color: #444;
+  margin-bottom: 14px;
+}
+article li {
+  margin-bottom: 6px;
+}
+article pre {
+  background: #1e2626;
+  border-radius: 6px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  margin: 0 0 18px;
+}
+article pre code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  color: #c8f0c8;
+  white-space: pre;
+}
+article code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  background: #f0f0f0;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #cc0000;
+}
+article pre code {
+  background: transparent;
+  color: #c8f0c8;
+  padding: 0;
+}
+article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+article th {
+  background: #1e2626;
+  color: #fff;
+  text-align: left;
+  padding: 8px 12px;
+}
+article td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #e8e8e8;
+  color: #444;
+}
+article tr:nth-child(even) td {
+  background: #f9f9f9;
+}
+
+/* ── Aside / Sidebar ── */
 aside {
   grid-area: aside_1;
-  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: start;
+  position: sticky;
+  top: 72px;
 }
 aside h3 {
-  display: block;
-  margin: 8px;
-  padding: 4px 8px;
-  border-bottom: solid 1px #727272;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #cc0000;
 }
+
+/* ── Sections (sidebar cards) ── */
 section {
-  background-color: #f2f2f2;
-  margin: 8px;
-  padding: 16px;
-  border-radius: 16px;
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  padding: 20px;
 }
-footer {
-  grid-area: footer_2;
-  background-color: #000;
+section h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 8px;
+}
+section p {
+  font-size: 13px;
+  color: #555;
+  margin: 0 0 10px;
+}
+section pre {
+  background: #1e2626;
+  border-radius: 5px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  margin: 0 0 14px;
+}
+section pre code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  color: #c8f0c8;
+  white-space: pre;
+}
+section ul {
   margin: 0;
-  padding: 32px;
-  font-size: 16px;
-  text-align: center;
+  padding-left: 18px;
 }
-footer p {
-  color: #fff !important;
+section ul li {
+  margin-bottom: 6px;
+  font-size: 13px;
 }
-footer p a {
-  display: inline-block;
-  margin: 8px;
-  padding: 8px;
-  background-color: #525252;
+section ul li a {
+  color: #cc0000;
   text-decoration: none;
-  color: #fff !important;
 }
-footer p a:hover {
+section ul li a:hover {
   text-decoration: underline;
 }
-footer p a img {
-  vertical-align: middle;
-  margin-left: 16px;
+
+/* ── Footer ── */
+footer {
+  background-color: #1e2626;
+  padding: 28px 40px;
+  text-align: center;
+  margin-top: 48px;
+}
+footer p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #aaa !important;
+}
+footer p.tagline {
+  font-size: 12px;
+  color: #666 !important;
+  margin-top: 8px;
+}
+footer a {
+  color: #ccc !important;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+footer a:hover {
+  color: #fff !important;
+  text-decoration: underline;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  main {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'heading'
+      'article_0'
+      'aside_1';
+    padding: 24px 20px;
+  }
+  aside {
+    position: static;
+  }
+  header {
+    padding: 0 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 8px;
+  }
+  main {
+    margin-top: 100px;
+  }
 }

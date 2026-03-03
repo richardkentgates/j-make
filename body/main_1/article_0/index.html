@@ -1,4 +1,92 @@
-<p>This content is derived from a directory call instead of a file or DB, meaning it rendered fast, can render content pulled from a mix of file types and scripting langages, like php or html. Furthermore, it allows each element to render independentaly so instead of plugins, you can use drop-in scripts.</p>
-<p>This page layout was generated from a simple JSON array. That JSON array is used to generate the html beyond the body, generate element Id attributes, add the j-make class, and assemble directory paths that mirror the generated html elements. Uniqueness in directory naming is done by using a coordinated element name to folder name with an index appended to the end of the file name, begining with an underscore. For example, header_0, or section_0 and section_1 and so on.</p>
-<h3>Where is this going?</h3>
-<p>I will work on this as time permits and eventually build something production with it. For now I have to make money and this is a hobby project so it may take a minute or two. Thanks for checking out my little project.</p>
+<h3>What is j-make?</h3>
+<p>
+    j-make is a lightweight client-side JavaScript library that reads a JSON array to build
+    your page's DOM from <code>&lt;body&gt;</code> down, then fetches content for each element
+    from a matching directory on your server. No build step. No back-end required.
+    Works on GitHub Pages out of the box.
+</p>
+
+<h3 id="how">How it works</h3>
+<ol>
+    <li>j-make reads <code>body.json</code> on <code>DOMContentLoaded</code>.</li>
+    <li>Each string in the array becomes an HTML element appended to <code>&lt;body&gt;</code> (or its parent for nested arrays).</li>
+    <li>Every element gets a <code>data-key</code> (<code>tagname_index</code>) and a <code>data-path</code> derived from its position in the tree.</li>
+    <li>j-make fetches <code>index.html</code> from the <code>data-path</code> directory and injects it into the element.</li>
+    <li>Nested arrays produce nested elements. Content is prepended so it always appears before child elements.</li>
+</ol>
+
+<h3 id="install">Installation</h3>
+<p>Reference j-make from the jsDelivr CDN &mdash; no file to download or host:</p>
+<pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/richardkentgates/j-make@1.0.0/j-make.js"&gt;&lt;/script&gt;</code></pre>
+<p>Pin to <code>@master</code> for the latest development version. jQuery 3.7.1+ must be loaded first.</p>
+
+<h3 id="setup">index.html setup</h3>
+<p>Leave <code>&lt;body&gt;</code> completely empty &mdash; j-make populates it.</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;My Site&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"&gt;&lt;/script&gt;
+    &lt;script src="https://cdn.jsdelivr.net/gh/richardkentgates/j-make@1.0.0/j-make.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<h3 id="bodyjson">body.json</h3>
+<p>
+    Place <code>body.json</code> at your site root. Strings become elements; nested arrays become
+    children of the preceding element. Elements are indexed zero-based among their siblings.
+</p>
+<pre><code>[
+    "header",
+    "main",
+    [
+        "article",
+        "aside",
+        [
+            "section",
+            "section"
+        ]
+    ],
+    "footer"
+]</code></pre>
+
+<h3 id="structure">Directory structure</h3>
+<p>
+    Create a <code>body/</code> folder at the root. For each element create a folder named
+    <code>{tagname}_{index}</code> and place an <code>index.html</code> inside it.
+    On GitHub Pages all index files must be <code>.html</code>. On a self-hosted server
+    you can mix in <code>.php</code> or any other server-side language.
+</p>
+<pre><code>index.html
+body.json
+body/
+    header_0/
+        index.html
+    main_1/
+        index.html
+        article_0/
+            index.html
+        aside_1/
+            index.html
+            section_0/
+                index.html
+            section_1/
+                index.html
+    footer_2/
+        index.html</code></pre>
+
+<h3>Generated attributes</h3>
+<p>Every element j-make creates receives three attributes automatically:</p>
+<table>
+    <tr><th>Attribute</th><th>Value</th><th>Example</th></tr>
+    <tr><td><code>class</code></td><td>Always <code>j-make</code></td><td><code>class="j-make"</code></td></tr>
+    <tr><td><code>data-key</code></td><td><code>tagname_index</code></td><td><code>data-key="aside_1"</code></td></tr>
+    <tr><td><code>data-path</code></td><td>Full directory path</td><td><code>data-path="body/main_1/aside_1"</code></td></tr>
+</table>
+<p>Inspect these in DevTools to debug path or loading issues.</p>
