@@ -254,6 +254,32 @@ footer a:hover {
   text-decoration: underline;
 }
 
+/* ── Sponsor button ── */
+a.sponsor-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 16px;
+  margin-top: 4px;
+  background-color: #fff0f0;
+  border: 1px solid #f0c0c0;
+  border-radius: 6px;
+  color: #cc0000 !important;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+a.sponsor-btn:hover {
+  background-color: #cc0000;
+  border-color: #cc0000;
+  color: #fff !important;
+}
+a.sponsor-btn:hover svg {
+  fill: #fff;
+}
+
 /* ── Responsive ── */
 @media (max-width: 860px) {
   main {
