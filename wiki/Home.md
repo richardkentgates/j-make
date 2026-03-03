@@ -21,6 +21,7 @@ j-make is a lightweight client-side JavaScript library that builds your page's D
 | Page | Description |
 |---|---|
 | [Getting Started](Getting-Started) | Installation and project setup |
+| [Architecture](Architecture) | How j-make works internally — data flow, path resolution, concurrency |
 | [body.json](body.json) | How to define your page structure |
 | [Directory Structure](Directory-Structure) | How j-make maps elements to file paths |
 | [Generated DOM Attributes](Generated-DOM-Attributes) | `data-key`, `data-path`, and the `j-make` class |
