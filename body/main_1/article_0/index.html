@@ -15,6 +15,35 @@
     <li>Nested arrays produce nested elements. Content is prepended so it always appears before child elements.</li>
 </ol>
 
+<h3 id="element-content">Element content — this page as an example</h3>
+<p>
+    Whatever is inside an element's <code>index.html</code> becomes that element's content.
+    There are no special tags or templates — it is just plain HTML fetched and injected as-is.
+</p>
+<p>
+    The navigation bar you see at the top of this page is a direct example.
+    The <code>&lt;header&gt;</code> element is created by j-make from <code>body.json</code>,
+    and its content — the logo, version badge, and every nav link — comes entirely from
+    <code>body/header_0/index.html</code>:
+</p>
+<pre><code>&lt;!-- body/header_0/index.html --&gt;
+&lt;h1&gt;j-make &lt;span class="version"&gt;v1.0.0&lt;/span&gt;&lt;/h1&gt;
+&lt;nav&gt;
+    &lt;a href="#intro"&gt;About&lt;/a&gt;
+    &lt;a href="#install"&gt;Install&lt;/a&gt;
+    &lt;a href="#setup"&gt;Setup&lt;/a&gt;
+    &lt;a href="#structure"&gt;Structure&lt;/a&gt;
+    &lt;a href="https://github.com/richardkentgates/j-make/wiki"&gt;Wiki&lt;/a&gt;
+    &lt;a href="https://github.com/richardkentgates/j-make"&gt;GitHub&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+<p>
+    Similarly, the sidebar cards come from <code>body/main_1/aside_1/section_0/index.html</code>,
+    <code>section_1/index.html</code>, and <code>section_2/index.html</code>. This entire article
+    is the content of <code>body/main_1/article_0/index.html</code>.
+    Every piece of visible content on this page lives in its own directory — none of it is
+    in <code>index.html</code> at the root.
+</p>
+
 <h3 id="install">Installation</h3>
 <p>Reference j-make from the jsDelivr CDN &mdash; no file to download or host:</p>
 <pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/richardkentgates/j-make@1.0.0/j-make.js"&gt;&lt;/script&gt;</code></pre>
