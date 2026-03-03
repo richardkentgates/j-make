@@ -7,6 +7,17 @@ j-make is a small client-side library (~80 lines) that does two things:
 
 ---
 
+## What j-make does NOT do
+
+j-make **does not generate navigation, menus, or any page content automatically**. It only:
+
+1. Creates DOM elements defined in `body.json`.
+2. Fetches the `index.html` from each element's directory and injects it verbatim.
+
+Every link, heading, paragraph, and navigation item you see on a j-make site is static HTML written by the developer inside the content files. j-make has no awareness of what is inside those files.
+
+---
+
 ## Data flow
 
 ```

@@ -10,6 +10,10 @@ A lightweight client-side library that builds your page's DOM from a JSON array 
 
 j-make reads `body.json` on `DOMContentLoaded`, creates each HTML element described in the array, and appends it to `<body>`. It then fetches the `index.html` from the corresponding directory on your server and injects it into that element. Nested arrays produce nested elements.
 
+### What j-make does NOT do
+
+j-make **does not generate navigation or any page content**. It creates the DOM elements from `body.json` and injects the `index.html` from each element's directory verbatim. Every link, heading, and nav item is static HTML you write yourself in the content files.
+
 ### Path resolution
 
 Every element j-make creates receives two data attributes:

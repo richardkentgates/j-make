@@ -15,10 +15,14 @@
     <li>Nested arrays produce nested elements. Content is prepended so it always appears before child elements.</li>
 </ol>
 
-<h3 id="element-content">Element content — this page as an example</h3>
+<h3 id="element-content">Element content — how it is populated</h3>
 <p>
-    Whatever is inside an element's <code>index.html</code> becomes that element's content.
-    There are no special tags or templates — it is just plain HTML fetched and injected as-is.
+    <strong>j-make does not generate navigation or any other content automatically.</strong>
+    It only creates the DOM elements defined in <code>body.json</code> and fetches the
+    <code>index.html</code> file from each element's directory. Whatever HTML you write in
+    those files is injected as-is. Navigation links, headings, paragraphs, buttons — all of
+    it is authored by you in the content files. j-make never reads or interprets the content;
+    it only decides where to put it.
 </p>
 <p>
     The navigation bar you see at the top of this page is a direct example.
