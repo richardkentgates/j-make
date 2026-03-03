@@ -10,6 +10,21 @@ A lightweight client-side library that builds your page's DOM from a JSON array 
 
 j-make reads `body.json` on `DOMContentLoaded`, creates each HTML element described in the array, and appends it to `<body>`. It then fetches the `index.html` from the corresponding directory on your server and injects it into that element. Nested arrays produce nested elements.
 
+### Path resolution
+
+Every element j-make creates receives two data attributes:
+
+- **`data-key`** — `{tagname}_{siblingIndex}` (zero-based among all siblings, e.g. `aside_1`)
+- **`data-path`** — `body/{ancestor keys}/{key}` (e.g. `body/main_1/aside_1`)
+
+The sibling index is counted by walking backwards through `previousElementSibling` in the live DOM. The ancestor chain is built by walking `parentNode` and collecting each ancestor's `data-key` until `<body>` is reached.
+
+### Content injection
+
+For each element, j-make fires a `$.get` request to `{data-path}/index.html`. Responses are sanitised with `$.parseHTML(..., false)` (scripts disabled) before being prepended into the element. All requests run in parallel — there is no waterfall.
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for a full technical breakdown.
+
 ---
 
 ## GitHub Pages quickstart
@@ -126,6 +141,7 @@ body/
 See the [wiki](https://github.com/richardkentgates/j-make/wiki) for full documentation including:
 
 - [Getting Started](https://github.com/richardkentgates/j-make/wiki/Getting-Started)
+- [Architecture](https://github.com/richardkentgates/j-make/wiki/Architecture)
 - [body.json format](https://github.com/richardkentgates/j-make/wiki/body.json)
 - [Directory Structure](https://github.com/richardkentgates/j-make/wiki/Directory-Structure)
 - [Generated DOM Attributes](https://github.com/richardkentgates/j-make/wiki/Generated-DOM-Attributes)
