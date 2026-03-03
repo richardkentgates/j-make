@@ -1,14 +1,31 @@
+:root {
+  --blue:       #2d8cf0;
+  --blue-dark:  #1a6fcb;
+  --blue-light: #e8f3fe;
+  --dark:       #0f1623;
+  --dark-2:     #1a2233;
+  --mid:        #333344;
+  --muted:      #6b7a99;
+  --border:     #e4eaf4;
+  --bg:         #f8fafc;
+  --white:      #ffffff;
+  --mono:       'JetBrains Mono', 'Fira Mono', monospace;
+  --sans:       'Inter', system-ui, -apple-system, sans-serif;
+  --radius:     8px;
+  --shadow:     0 2px 18px rgba(0,0,0,.07);
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
-  color: #2c2c2c;
+  font-family: var(--sans);
+  color: var(--mid);
 }
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   width: 100%;
-  background-color: #f8f8f8;
+  background-color: var(--bg);
 }
 
 /* ── Header ── */
@@ -24,22 +41,24 @@ header {
   flex-wrap: wrap;
   gap: 8px;
   padding: 10px 40px;
-  background-color: rgba(30, 38, 38, 0.95);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  background-color: rgba(15, 22, 35, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.35);
   min-height: 56px;
 }
 header h1 {
   margin: 0;
   padding: 0 0 0 16px;
-  border-left: solid 3px #cc0000;
+  border-left: solid 3px var(--blue);
   font-size: 22px;
-  font-weight: 300;
-  color: #fff;
+  font-weight: 700;
+  color: var(--white);
   white-space: nowrap;
 }
 header h1 .version {
   font-size: 13px;
-  color: #cc0000;
+  color: var(--blue);
   margin-left: 8px;
   font-weight: 400;
   vertical-align: middle;
@@ -50,16 +69,17 @@ header nav {
   flex-wrap: wrap;
 }
 header nav a {
-  color: #ccc;
+  color: var(--muted);
   text-decoration: none;
   font-size: 14px;
+  font-weight: 500;
   padding: 6px 12px;
-  border-radius: 4px;
+  border-radius: 6px;
   transition: background 0.15s, color 0.15s;
 }
 header nav a:hover {
-  background-color: rgba(255,255,255,0.1);
-  color: #fff;
+  background-color: rgba(45, 140, 240, 0.15);
+  color: var(--blue);
 }
 
 /* ── Main grid ── */
@@ -79,18 +99,18 @@ main > h2 {
   grid-area: heading;
   font-size: 22px;
   font-weight: 300;
-  color: #444;
+  color: var(--muted);
   margin: 0 0 24px;
   padding-bottom: 12px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border);
 }
 
 /* ── Article ── */
 article {
   grid-area: article_0;
-  background: #fff;
-  border: 1px solid #e4e4e4;
-  border-radius: 8px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 32px;
   line-height: 1.7;
   min-width: 0;
@@ -99,28 +119,28 @@ article {
 article h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--dark);
   margin: 32px 0 10px;
   padding-bottom: 6px;
-  border-bottom: 2px solid #cc0000;
+  border-bottom: 2px solid var(--blue);
 }
 article h3:first-child {
   margin-top: 0;
 }
 article p {
   margin: 0 0 14px;
-  color: #444;
+  color: var(--mid);
 }
 article ol, article ul {
   padding-left: 24px;
-  color: #444;
+  color: var(--mid);
   margin-bottom: 14px;
 }
 article li {
   margin-bottom: 6px;
 }
 article pre {
-  background: #1e2626;
+  background: var(--dark);
   border-radius: 6px;
   padding: 18px 20px;
   overflow-x: auto;
@@ -128,24 +148,24 @@ article pre {
   max-width: 100%;
 }
 article pre code {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--mono);
   font-size: 13px;
-  color: #c8f0c8;
+  color: #82cfff;
   white-space: pre;
   word-break: normal;
   overflow-wrap: normal;
 }
 article code {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--mono);
   font-size: 13px;
-  background: #f0f0f0;
+  background: var(--blue-light);
   padding: 1px 5px;
   border-radius: 3px;
-  color: #cc0000;
+  color: var(--blue-dark);
 }
 article pre code {
   background: transparent;
-  color: #c8f0c8;
+  color: #82cfff;
   padding: 0;
 }
 article table {
@@ -158,18 +178,18 @@ article table {
   -webkit-overflow-scrolling: touch;
 }
 article th {
-  background: #1e2626;
-  color: #fff;
+  background: var(--dark);
+  color: var(--white);
   text-align: left;
   padding: 8px 12px;
 }
 article td {
   padding: 8px 12px;
-  border-bottom: 1px solid #e8e8e8;
-  color: #444;
+  border-bottom: 1px solid var(--border);
+  color: var(--mid);
 }
 article tr:nth-child(even) td {
-  background: #f9f9f9;
+  background: var(--bg);
 }
 
 /* ── Aside / Sidebar ── */
@@ -186,34 +206,34 @@ aside {
 aside h3 {
   font-size: 15px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--dark);
   margin: 0 0 12px;
   padding-bottom: 6px;
-  border-bottom: 2px solid #cc0000;
+  border-bottom: 2px solid var(--blue);
 }
 
 /* ── Sections (sidebar cards) ── */
 section {
-  background: #fff;
-  border: 1px solid #e4e4e4;
-  border-radius: 8px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 20px;
 }
 section h4 {
   font-size: 13px;
   font-weight: 700;
-  color: #888;
+  color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin: 0 0 8px;
 }
 section p {
   font-size: 13px;
-  color: #555;
+  color: var(--muted);
   margin: 0 0 10px;
 }
 section pre {
-  background: #1e2626;
+  background: var(--dark);
   border-radius: 5px;
   padding: 10px 12px;
   overflow-x: auto;
@@ -221,9 +241,9 @@ section pre {
   max-width: 100%;
 }
 section pre code {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--mono);
   font-size: 11px;
-  color: #c8f0c8;
+  color: #82cfff;
   white-space: pre;
   word-break: normal;
   overflow-wrap: normal;
@@ -237,7 +257,7 @@ section ul li {
   font-size: 13px;
 }
 section ul li a {
-  color: #cc0000;
+  color: var(--blue);
   text-decoration: none;
 }
 section ul li a:hover {
@@ -246,7 +266,7 @@ section ul li a:hover {
 
 /* ── Footer ── */
 footer {
-  background-color: #1e2626;
+  background: linear-gradient(160deg, var(--dark) 0%, var(--dark-2) 100%);
   padding: 28px 40px;
   text-align: center;
   margin-top: 48px;
@@ -254,20 +274,20 @@ footer {
 footer p {
   margin: 4px 0;
   font-size: 14px;
-  color: #aaa !important;
+  color: var(--muted) !important;
 }
 footer p.tagline {
   font-size: 12px;
-  color: #666 !important;
+  color: #3d4f6e !important;
   margin-top: 8px;
 }
 footer a {
-  color: #ccc !important;
+  color: #8fa4c8 !important;
   text-decoration: none;
   transition: color 0.15s;
 }
 footer a:hover {
-  color: #fff !important;
+  color: var(--white) !important;
   text-decoration: underline;
 }
 
@@ -279,22 +299,25 @@ a.sponsor-btn {
   width: 100%;
   padding: 10px 16px;
   margin-top: 4px;
-  background-color: #fff0f0;
-  border: 1px solid #f0c0c0;
+  background-color: var(--blue-light);
+  border: 1px solid rgba(45, 140, 240, 0.35);
   border-radius: 6px;
-  color: #cc0000 !important;
+  color: var(--blue-dark) !important;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   transition: background 0.15s, border-color 0.15s;
 }
 a.sponsor-btn:hover {
-  background-color: #cc0000;
-  border-color: #cc0000;
-  color: #fff !important;
+  background-color: var(--blue);
+  border-color: var(--blue);
+  color: var(--white) !important;
 }
 a.sponsor-btn:hover svg {
-  fill: #fff;
+  fill: var(--white);
+}
+a.sponsor-btn svg {
+  fill: var(--blue);
 }
 
 /* ── Responsive ── */
