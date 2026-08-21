@@ -17,7 +17,6 @@
   --shadow:        0 2px 18px rgba(0,0,0,.07);
 }
 
-
 /* ── Reset ─────────────────────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -26,7 +25,7 @@
 }
 html {
   scroll-behavior: smooth;
-
+  scroll-padding-top: 80px;
 }
 html, body {
   margin: 0;
@@ -38,8 +37,22 @@ html, body {
 
 /* ── Header ────────────────────────────────────────────────────────────── */
 header {
-  padding: 16px 40px;
-  background-color: var(--dark);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 40px;
+  background-color: rgba(15, 22, 35, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  min-height: 56px;
 }
 header h1 {
   margin: 0;
@@ -78,10 +91,11 @@ header nav a:hover {
 
 /* ── Hero ──────────────────────────────────────────────────────────────── */
 .hero {
-  background-color: var(--dark);
-  border: none;
-  border-radius: 0;
-  padding: 0 40px 32px;
+  background: linear-gradient(135deg, var(--dark) 0%, #0a1628 50%, #0d1f38 100%) !important;
+  padding: 80px 64px !important;
+  border-bottom: 1px solid rgba(45,140,240,.2) !important;
+  max-width: 100% !important;
+  margin: 0 !important;
 }
 .hero-badge {
   display: inline-flex;
@@ -186,14 +200,23 @@ main {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;
   grid-template-areas:
-    'article_0 aside_0';
+    'heading  aside_1'
+    'article_0 aside_1';
   column-gap: 32px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 80px auto 0;
   padding: 32px 40px;
   min-width: 0;
 }
-
+main > h2 {
+  grid-area: heading;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--muted);
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
 
 /* ── Article ───────────────────────────────────────────────────────────── */
 article {
@@ -302,7 +325,7 @@ article tr:nth-child(even) td {
 
 /* ── Aside / Sidebar ───────────────────────────────────────────────────── */
 aside {
-  grid-area: aside_0;
+  grid-area: aside_1;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -569,15 +592,16 @@ footer a:hover {
 /* ── Responsive — tablet ───────────────────────────────────────────────── */
 @media (max-width: 860px) {
   header {
-    padding: 12px 20px;
+    padding: 8px 20px;
   }
   main {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
+      'heading'
       'article_0'
-      'aside_0';
+      'aside_1';
     padding: 24px 20px;
-
+    margin-top: 72px;
   }
   aside {
     position: static;
@@ -601,7 +625,7 @@ footer a:hover {
   }
   main {
     padding: 16px 12px;
-
+    margin-top: 72px;
   }
   article {
     padding: 20px 16px;
